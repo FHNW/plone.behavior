@@ -93,7 +93,7 @@ def lookup_behavior_registration(
         for id_, behavior in getUtilitiesFor(IBehavior):
             # Before we raise an error, iterate over all behaviors and check
             # if the requested name is registered as a former dotted name.
-            if name in behavior.former_dotted_names:
+            if name in getattr(behavior, 'former_dotted_names', []):
                 if warn_about_fallback:
                     logger.warn(
                         'The dotted name "{0}" is deprecated. It has been '
